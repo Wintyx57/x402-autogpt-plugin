@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "x402-autogpt-plugin"
+version = "0.1.0"
+description = "Auto-GPT plugin for x402 Bazaar - access 70+ paid APIs with automatic USDC payments"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "x402 Bazaar", email = "hello@x402-bazaar.com"}
+]
+keywords = [
+    "autogpt",
+    "plugin",
+    "x402",
+    "api-marketplace",
+    "web3",
+    "usdc",
+    "base",
+    "payment-protocol",
+    "autonomous-agents"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Office/Business :: Financial :: Point-Of-Sale",
+]
+
+dependencies = [
+    "requests>=2.28.0",
+    "auto-gpt-plugin-template>=0.0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=0.990",
+    "types-requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://x402-api.onrender.com"
+Documentation = "https://github.com/x402-bazaar/x402-autogpt-plugin#readme"
+Repository = "https://github.com/x402-bazaar/x402-autogpt-plugin"
+Issues = "https://github.com/x402-bazaar/x402-autogpt-plugin/issues"
+Marketplace = "https://x402-bazaar.vercel.app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=x402_bazaar --cov-report=term-missing"
