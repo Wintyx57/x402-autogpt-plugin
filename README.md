@@ -421,13 +421,18 @@ The marketplace has rate limits. Use responsibly:
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## Links
+## Ecosystem
 
-- **Website**: https://x402bazaar.org
-- **API**: https://x402-api.onrender.com
-- **CLI**: https://www.npmjs.com/package/x402-bazaar
-- **GitHub Backend**: https://github.com/Wintyx57/x402-backend
-- **GitHub Frontend**: https://github.com/Wintyx57/x402-frontend
+| Repository | Description |
+|---|---|
+| **[x402-backend](https://github.com/Wintyx57/x402-backend)** | API server, 69 native endpoints, payment middleware, MCP server |
+| **[x402-frontend](https://github.com/Wintyx57/x402-frontend)** | React + TypeScript UI, wallet connect |
+| **[x402-bazaar-cli](https://github.com/Wintyx57/x402-bazaar-cli)** | `npx x402-bazaar` -- CLI with 7 commands |
+| **[x402-sdk](https://github.com/Wintyx57/x402-sdk)** | TypeScript SDK for AI agents |
+| **[x402-langchain](https://github.com/Wintyx57/x402-langchain)** | Python LangChain tools |
+| **[x402-autogpt-plugin](https://github.com/Wintyx57/x402-autogpt-plugin)** | Auto-GPT plugin (this repo) |
+
+**Live:** [x402bazaar.org](https://x402bazaar.org) | **API:** [x402-api.onrender.com](https://x402-api.onrender.com)
 
 ## Support
 
