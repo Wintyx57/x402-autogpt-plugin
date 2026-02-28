@@ -88,9 +88,11 @@ pytest --cov=x402_bazaar --cov-report=term-missing
 
 # Run specific test file
 pytest tests/test_client.py
+pytest tests/test_standalone_usage.py
 
-# Run specific test
+# Run specific test class or test
 pytest tests/test_client.py::TestX402Client::test_discover_services
+pytest tests/test_standalone_usage.py::TestSection8ConvenienceMethods::test_all_four_methods_called
 ```
 
 ### Writing Tests
@@ -100,9 +102,10 @@ pytest tests/test_client.py::TestX402Client::test_discover_services
 - Use descriptive test names
 - Follow the Arrange-Act-Assert pattern
 
-Example:
+Examples:
 
 ```python
+# Simple AAA pattern
 def test_new_feature(client):
     """Test description."""
     # Arrange
@@ -113,6 +116,32 @@ def test_new_feature(client):
 
     # Assert
     assert result["success"] is True
+
+
+# Integration-style pattern (used in test_standalone_usage.py)
+# Group tests by section/feature in a class, use a _run() helper to
+# avoid repeating mock boilerplate, and test stdout with redirect_stdout.
+import io
+from contextlib import redirect_stdout
+from unittest.mock import MagicMock, patch
+
+class TestMyFeature:
+    def _run(self, my_method_return=None):
+        mock_client = MagicMock()
+        mock_client.my_method.return_value = my_method_return or {"success": False}
+        buf = io.StringIO()
+        with patch("my_module.MyClient", return_value=mock_client):
+            with redirect_stdout(buf):
+                main()
+        return buf.getvalue()
+
+    def test_success_shows_result(self):
+        output = self._run(my_method_return={"success": True, "data": "ok"})
+        assert "ok" in output
+
+    def test_error_handled_gracefully(self):
+        output = self._run(my_method_return={"success": False, "error": "oops"})
+        assert "oops" in output
 ```
 
 ### Documentation

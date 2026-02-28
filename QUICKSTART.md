@@ -61,7 +61,7 @@ You should see marketplace information.
 You can use the client directly in Python:
 
 ```python
-from x402_bazaar import X402Client
+from x402_bazaar.x402_client import X402Client
 
 # Initialize client
 client = X402Client()
@@ -96,12 +96,12 @@ if result.get("success"):
 ### Step 1: List Available APIs
 
 ```python
-from x402_bazaar import X402Client
+from x402_bazaar.x402_client import X402Client
 
 client = X402Client()
 services = client.discover_services()
 
-for service in services[:10]:  # First 10
+for service in services[:5]:  # First 5
     print(f"{service['name']}: {service['cost_usdc']} USDC")
 ```
 
@@ -303,6 +303,9 @@ pytest --cov=x402_bazaar
 
 # Run specific test
 pytest tests/test_client.py::TestX402Client::test_discover_services
+
+# Run standalone usage tests
+pytest tests/test_standalone_usage.py
 ```
 
 ## Troubleshooting

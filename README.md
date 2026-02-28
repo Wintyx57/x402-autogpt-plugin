@@ -32,6 +32,8 @@ pip install -e .
 pip install x402-autogpt-plugin
 ```
 
+> **Note**: `auto_gpt_plugin_template` is an optional dependency. Without it, `X402BazaarPlugin` and `register` are `None`, but `X402Client` remains fully usable for standalone usage.
+
 ## Configuration
 
 ### 1. Add Plugin to Auto-GPT
@@ -105,6 +107,17 @@ x402_info()
 ```
 
 Get information about the x402 Bazaar marketplace.
+
+### `report()` - Plugin Status Report
+
+The plugin generates a status report via Auto-GPT's reporting interface:
+
+- Plugin status (Enabled / Disabled) and version
+- Total number of available APIs
+- Top categories with API counts
+- List of available commands (`x402_list`, `x402_search`, `x402_call`, `x402_info`)
+
+> **Note**: `x402_list` displays up to 20 APIs at a time. If more are available, the output indicates "and X more".
 
 ### Python Usage (Standalone)
 
@@ -321,12 +334,19 @@ x402-autogpt-plugin/
 │       │                         # - Command handlers (list, search, call, info)
 │       │                         # - Response processing & logging
 │       │                         # - Report generation
+│       │                         # - Optional: None when auto_gpt_plugin_template absent
 │       │
 │       └── x402_client.py        # HTTP client & payment protocol
 │                                 # - discover_services()
 │                                 # - search_services()
 │                                 # - call_api() with 402 handling
 │                                 # - Convenience methods (weather, search, etc.)
+│
+├── tests/
+│   ├── test_plugin_init.py       # Unit tests for X402BazaarPlugin & register()
+│   ├── test_standalone_usage.py  # Tests for standalone X402Client usage
+│   ├── test_client.py            # X402Client unit tests
+│   └── test_integration.py      # Integration tests (live API)
 │
 ├── pyproject.toml                # Package metadata
 ├── setup.py                      # pip installation
@@ -339,7 +359,13 @@ x402-autogpt-plugin/
 ### Run Tests
 
 ```bash
-# Unit tests
+# Plugin unit tests (no internet, no auto_gpt_plugin_template required)
+pytest tests/test_plugin_init.py
+
+# Standalone client tests
+pytest tests/test_standalone_usage.py
+
+# HTTP client unit tests
 pytest tests/test_client.py
 
 # Integration tests (requires internet)

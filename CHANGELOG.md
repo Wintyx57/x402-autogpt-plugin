@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `tests/test_standalone_usage.py` — comprehensive unit test suite for `examples/standalone_usage.py`
+  - 8 test classes, 30+ test cases covering all 8 sections of `main()`
+  - `TestMainConnectionFailure` — early-exit behaviour when `test_connection()` returns False
+  - `TestMainOutputStructure` — banner, URL, connection status, section numbering, footer
+  - `TestSection2Stats` — marketplace stats display, missing-field N/A fallback, exception recovery
+  - `TestSection3Discover` — service count, first-5 truncation, cost display, exception recovery
+  - `TestSection4Search` — weather query, result count, field display, zero results, call assertion
+  - `TestSection5FreeAPI` — free `/api/services` call, success/error/exception paths, call assertion
+  - `TestSection6WeatherAPI` — payment-required (amount/address/chain/instructions), success, exception
+  - `TestSection7ServiceDetails` — found/not-found/exception paths, `get_service_details("Weather API")` assertion
+  - `TestSection8ConvenienceMethods` — crypto/search/image/scraper: payment-required, success, exception, call assertions (BTC, bitcoin, sunset, example.com)
+  - `TestClientInstantiation` — `X402Client()` called with no args, custom `base_url` printed
+  - `TestPaymentDetailsOutput` — all payment sub-fields (Amount, Address, Chain, Instructions) verified; temperature/conditions absent on payment-required
+
 ### Planned
 - Batch API call support
 - Automatic payment with wallet integration
