@@ -4,7 +4,7 @@ A production-ready Auto-GPT plugin that enables autonomous agents to discover, c
 
 ## Features
 
-- **70+ Premium APIs**: Access weather, web search, crypto prices, AI image generation, web scraping, translations, stock data, and more
+- **74+ Premium APIs**: Access weather, web search, crypto prices, AI image generation, web scraping, translations, stock data, and more
 - **Automatic x402 Payment Protocol**: Handles payment flow transparently (402 → pay → retry with tx hash)
 - **Service Discovery**: Search and discover APIs dynamically
 - **Zero Mock Data**: Real production integration with live marketplace
@@ -74,7 +74,7 @@ The plugin registers these commands with Auto-GPT:
 x402_list()
 ```
 
-Lists all 70+ available APIs on x402 Bazaar with names, descriptions, and costs.
+Lists all 74+ available APIs on x402 Bazaar with names, descriptions, and costs.
 
 #### `x402_search` - Search APIs
 
@@ -155,7 +155,7 @@ if response.get("success"):
 
 ## Available APIs
 
-The x402 Bazaar marketplace offers 70+ APIs across multiple categories:
+The x402 Bazaar marketplace offers 74+ APIs across multiple categories:
 
 ### Free APIs
 - Service Discovery (`/api/services`)
@@ -214,9 +214,12 @@ The plugin implements the x402 payment protocol:
 ### Payment Details
 
 - **Token**: USDC (USD Coin)
-- **Chain**: Base (Coinbase L2)
+- **Chains**: Base (Coinbase L2), SKALE on Base (ultra-low gas), Polygon (high liquidity)
 - **Address**: `0xfb1c478BD5567BdcD39782E0D6D23418bFda2430`
-- **Contract**: `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`
+- **Contracts**:
+  - Base: `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` (chain ID 8453)
+  - SKALE on Base: `0x85889c8c714505E0c94b30fcfcF64fE3Ac8FCb20` (chain ID 1187947933)
+  - Polygon: `0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359` (chain ID 137)
 
 ## Examples
 
@@ -315,7 +318,7 @@ Auto-GPT will:
 ```bash
 # In Auto-GPT CLI
 > x402 list
-# Shows all 70+ APIs
+# Shows all 74+ APIs
 
 > x402 search weather
 # Shows weather-related APIs
@@ -451,7 +454,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 | Repository | Description |
 |---|---|
-| **[x402-backend](https://github.com/Wintyx57/x402-backend)** | API server, 69 native endpoints, payment middleware, MCP server |
+| **[x402-backend](https://github.com/Wintyx57/x402-backend)** | API server, 74 native endpoints, payment middleware, MCP server |
 | **[x402-frontend](https://github.com/Wintyx57/x402-frontend)** | React + TypeScript UI, wallet connect |
 | **[x402-bazaar-cli](https://github.com/Wintyx57/x402-bazaar-cli)** | `npx x402-bazaar` -- CLI with 7 commands |
 | **[x402-sdk](https://github.com/Wintyx57/x402-sdk)** | TypeScript SDK for AI agents |
@@ -469,7 +472,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ### v0.1.0 (2026-02-13)
 - Initial release
-- 70+ API integrations
+- 74+ API integrations
 - x402 payment protocol support
 - Auto-GPT plugin implementation
 - Service discovery and search
